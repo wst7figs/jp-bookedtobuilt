@@ -83,6 +83,8 @@
     border:1px solid var(--line);border-radius:999px;padding:7px 15px;
   }
   .verse b{color:#fff;text-shadow:0 0 14px var(--glow)}
+  /* Syne draws a lowercase j with no hook, so it reads as an i at large sizes; borrow Inter's j */
+  .jfix{font-family:'Inter',system-ui,sans-serif;font-weight:800}
 
   /* the visual is drawn in % of its own box, so it scales as one piece at every width */
   .hero-visual{position:relative;width:100%;max-width:460px;aspect-ratio:46/43}
@@ -713,7 +715,7 @@
     <header class="hero">
       <div class="hero-copy">
         <p class="kicker">Hi, I'm <b>Jean-Pierre</b> from JP Marketing &amp; Websites.</p>
-        <h1 class="headline">Websites that book jobs, not just look pretty.</h1>
+        <h1 class="headline">Websites that book <span class="jfix">j</span>obs, not <span class="jfix">j</span>ust look pretty.</h1>
         <p class="tag">Founder, builder, creative. I build the site, the systems and the content that keep your calendar full.</p>
         <div class="hero-actions">
           <a class="hero-cta" href="book.html">Work with me <span class="cta-arrow">→</span></a>
@@ -934,7 +936,7 @@
 
     <!-- CTA -->
     <div class="cta">
-      <h2>Need a site that books jobs?</h2>
+      <h2>Need a site that books <span class="jfix">j</span>obs?</h2>
       <p>Home services, creative, or anything in between — let's build it.</p>
       <a href="book.html">Work with me →</a>
     </div>
