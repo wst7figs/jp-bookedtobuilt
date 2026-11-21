@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Call — JP, Booked to Built</title>
+<meta name="description" content="Book a free call with JP. Pick a time that suits you and get a Google Meet link." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#050505;
+    --white:#ffffff;
+    --muted:#9a9a9e;
+    --line:rgba(255,255,255,.10);
+    --glow:rgba(255,255,255,.85);
+    --card:rgba(255,255,255,.035);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--white);
+    min-height:100vh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(600px circle at 50% -10%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(800px circle at 90% 20%, rgba(255,255,255,.04), transparent 55%),
+      radial-gradient(700px circle at 0% 80%, rgba(255,255,255,.05), transparent 55%);
+    z-index:0;pointer-events:none;
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(circle at 50% 30%, black, transparent 75%);
+    opacity:.35;z-index:0;pointer-events:none;
+  }
+  .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:40px 18px 70px}
+  .back{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    transition:.25s;
+  }
+  .back:hover{color:#fff}
+  .head{text-align:center;margin:26px 0 28px;animation:rise .8s ease both}
+  .head h1{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;margin-bottom:10px}
+  .head h1 .glow{text-shadow:0 0 22px var(--glow)}
+  .head p{color:#c8c8cc;font-size:15.5px;line-height:1.65;max-width:460px;margin:0 auto}
+  .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
+  .pill{
+    font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:7px 14px;
+  }
+  .pill b{color:#fff;font-weight:600}
+  .cal{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 50px rgba(255,255,255,.12);
+    animation:rise .8s .1s ease both;
+  }
+  .calendly-inline-widget{min-width:320px;height:760px}
+  footer{text-align:center;margin-top:36px;color:var(--muted);font-size:12.5px;letter-spacing:.3px}
+  footer .dot{margin:0 7px;opacity:.5}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @media(max-width:480px){
+    .wrap{padding:28px 12px 56px}
+    .head h1{font-size:28px}
+    .calendly-inline-widget{height:840px}
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="index.html">← Back</a>
+
+    <header class="head">
+      <h1>Book a <span class="glow">call</span> with me</h1>
+      <p>Pick a time that suits you. You'll get a Google Meet link by email as soon as you confirm.</p>
+      <div class="pills">
+        <span class="pill"><b>30 min</b> call</span>
+        <span class="pill">Google <b>Meet</b></span>
+        <span class="pill"><b>Free</b>, no obligation</span>
+      </div>
+    </header>
+
+    <!-- Calendly inline embed -->
+    <div class="cal">
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/jeanfromza/30min?hide_gdpr_banner=1"></div>
+    </div>
+
+    <footer>
+      JP <span class="dot">•</span> Booked to Built <span class="dot">•</span> Pretoria, Gauteng
+    </footer>
+  </main>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JP — Booked to Built</title>
 <meta name="description" content="JP — founder of Booked to Built. I build online presences that book jobs. Web, creative, photography & video." />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -66,9 +69,10 @@
 
   /* ---------- HERO ---------- */
   .hero{text-align:center;animation:rise .8s ease both}
+  .avatar-row{margin-bottom:22px}
   .avatar{
     width:128px;height:128px;
-    margin:0 auto 22px;
+    margin:0 auto;
     border-radius:50%;
     position:relative;
     display:grid;place-items:center;
@@ -133,6 +137,26 @@
   }
   .verse b{color:#fff;text-shadow:0 0 14px var(--glow)}
 
+  /* ---------- HERO ACTIONS (wide screens only; phones use the menu button) ---------- */
+  .hero-actions{display:none}
+  .hero-cta{
+    display:inline-flex;align-items:center;gap:9px;
+    background:#fff;color:#000;text-decoration:none;white-space:nowrap;
+    font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:.2px;
+    padding:14px 24px;border-radius:999px;
+    box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 26px rgba(255,255,255,.22);
+    transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s;
+  }
+  .hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 40px rgba(255,255,255,.4)}
+  .hero-cta .cta-arrow{transition:transform .3s}
+  .hero-cta:hover .cta-arrow{transform:translateX(3px)}
+  .hero-ghost{
+    display:inline-flex;align-items:center;color:#fff;text-decoration:none;
+    font-weight:600;font-size:15px;padding:14px 22px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.22);transition:.25s;
+  }
+  .hero-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.06)}
+
   /* ---------- SECTION ---------- */
   .section{margin-top:46px;animation:rise .8s ease both}
   .section-label{
@@ -174,22 +198,253 @@
   }
   .chip .ico{font-size:16px;filter:grayscale(1) brightness(2)}
 
-  /* ---------- SERVICE CARDS ---------- */
-  .cards{display:grid;gap:12px}
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:18px 20px;
-    transition:.25s;
+  /* ---------- WHAT I BUILD: one stage, three live demos ---------- */
+  .build{
+    border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
   }
-  .card:hover{
-    background:var(--card-hover);
-    border-color:rgba(255,255,255,.22);
-    box-shadow:0 0 30px rgba(255,255,255,.08);
+  .build-stage{
+    position:relative;aspect-ratio:4/3;overflow:hidden;container-type:inline-size;
+    background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.08),transparent 62%),#070708;
   }
-  .card h3{font-size:15px;font-weight:600;margin-bottom:5px;letter-spacing:.2px}
-  .card p{font-size:13.5px;color:var(--muted);line-height:1.55}
+  /* every demo is drawn in em, and 1em = 1/40 of the stage width, so each one scales as a single piece */
+  .scene{
+    position:absolute;inset:0;font-size:9px;font-size:calc(100cqw / 40);line-height:1.3;
+    opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s .45s;
+  }
+  .scene.is-active{opacity:1;visibility:visible;transition:opacity .45s ease}
+
+  /* demo 1: a site builds itself, gets clicked, and a booking lands */
+  .bw{
+    position:absolute;left:2.5em;right:2.5em;top:2.4em;bottom:-1em;
+    border-radius:1.2em 1.2em 0 0;overflow:hidden;background:#f5f5f2;
+    box-shadow:0 0 0 1px rgba(255,255,255,.16),0 2em 5em rgba(0,0,0,.6);
+  }
+  .bw-bar{height:2.8em;display:flex;align-items:center;gap:.5em;padding:0 1em;background:#161618;position:relative}
+  .bw-bar i{width:.65em;height:.65em;border-radius:50%;background:rgba(255,255,255,.22)}
+  .bw-url{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:1.15em;color:#9a9a9e;background:rgba(255,255,255,.07);
+    padding:.2em 1.2em;border-radius:99em;white-space:nowrap;
+  }
+  .bw-page{padding:2em 2.2em;color:#0a0a0a}
+  .bw-nav{display:flex;align-items:center;justify-content:space-between;height:1.4em;margin-bottom:2.8em}
+  .bw-logo{width:1.4em;height:1.4em;border-radius:.4em;background:#0a0a0a;position:relative}
+  .bw-logo::after{content:"";position:absolute;left:1.9em;top:.45em;width:5em;height:.5em;border-radius:1em;background:#0a0a0a}
+  .bw-links{display:flex;gap:.9em}
+  .bw-links i{width:2.6em;height:.45em;border-radius:1em;background:#c9c9c4}
+  .bw-h{font-family:'Syne',sans-serif;font-weight:800;font-size:2.3em;line-height:1.08;letter-spacing:-.01em}
+  .bw-h span{display:block;white-space:nowrap}
+  .bw-sub{font-size:1.3em;color:#5c5c58;margin-top:.8em}
+  .bw-row{display:flex;align-items:center;gap:1.4em;margin-top:1.7em}
+  .bw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-top:2.6em}
+  .bw-cards i{height:7em;border-radius:1em;background:#e6e6e1}
+  .bw-btn{
+    position:relative;display:inline-grid;font-size:1.3em;font-weight:700;
+    background:#0a0a0a;color:#fff;padding:.75em 1.4em;border-radius:99em;white-space:nowrap;
+  }
+  .bw-btn>span{grid-area:1/1;text-align:center}
+  .bw-btn-b{opacity:0}
+  .bw-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;border:.15em solid #0a0a0a;opacity:0}
+  .bw-cursor{position:absolute;left:62%;top:52%;width:1.7em;height:1.7em;opacity:0;filter:drop-shadow(0 .2em .3em rgba(0,0,0,.35))}
+  .bw-stars{font-size:1.2em;letter-spacing:.05em;white-space:nowrap}
+  .bw-stars b{margin-left:.3em}
+  .toast{
+    position:absolute;right:1.2em;top:5.4em;display:flex;align-items:center;gap:.9em;
+    padding:.9em 1.4em .9em .9em;border-radius:1.3em;
+    background:rgba(18,18,20,.95);border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 1.2em 3em rgba(0,0,0,.55),0 0 2.4em rgba(255,255,255,.12);
+    opacity:0;
+  }
+  .toast-ico{width:2.5em;height:2.5em;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+  .toast-ico svg{width:1.3em;height:1.3em}
+  .toast b{display:block;font-size:1.3em;font-weight:700}
+  .toast small{display:block;font-size:1.15em;color:#9a9a9e;margin-top:.1em}
+
+  .scene-web.is-active .bw{animation:scUp .6s cubic-bezier(.2,.7,.3,1) both}
+  .scene-web.is-active .bw-nav{animation:scFade .4s .5s both}
+  .scene-web.is-active .bw-h span{animation:scWipe .6s .8s cubic-bezier(.6,0,.2,1) both}
+  .scene-web.is-active .bw-h span+span{animation-delay:1.05s}
+  .scene-web.is-active .bw-sub{animation:scFade .5s 1.55s both}
+  .scene-web.is-active .bw-btn{animation:scPop .45s 1.95s cubic-bezier(.2,1.3,.4,1) both,scPress .3s 3.65s}
+  .scene-web.is-active .bw-stars{animation:scFade .5s 2.25s both}
+  .scene-web.is-active .bw-cards{animation:scFade .6s 2.35s both}
+  .scene-web.is-active .bw-cursor{animation:curMove 1.05s 2.55s cubic-bezier(.3,.7,.2,1) both}
+  .scene-web.is-active .bw-btn::after{animation:scRing .6s 3.7s}
+  .scene-web.is-active .bw-btn-a{animation:scOut .25s 3.95s both}
+  .scene-web.is-active .bw-btn-b{animation:scFade .25s 4.05s both}
+  .scene-web.is-active .toast{animation:toastIn .55s 4.6s cubic-bezier(.2,1.25,.3,1) both}
+
+  /* demo 2: a lead moves through the pipeline while the automations log what they did */
+  .pipe{
+    position:absolute;left:2em;right:2em;top:2.2em;height:15.6em;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1em;
+    --step:calc(34em / 3 + 1em);
+  }
+  .pipe-col{border:1px solid var(--line);border-radius:1.2em;background:rgba(255,255,255,.025);padding:.6em}
+  .pipe-h{display:block;font-size:1.3em;line-height:1.7;color:#9a9a9e;padding-left:.3em;white-space:nowrap}
+  .ghost{
+    display:block;height:4.4em;margin-top:6em;border-radius:.9em;
+    background:
+      linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)) .9em 1.1em/50% .7em no-repeat,
+      linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.08)) .9em 2.6em/72% .6em no-repeat,
+      rgba(255,255,255,.04);
+  }
+  .lead{
+    position:absolute;left:.6em;top:2.85em;width:calc((100% - 2em) / 3 - 1.2em);height:5.3em;
+    display:flex;flex-direction:column;justify-content:center;padding:0 .9em;
+    background:#fff;color:#0a0a0a;border-radius:.9em;
+    box-shadow:0 .8em 2em rgba(0,0,0,.5),0 0 2em rgba(255,255,255,.18);
+    opacity:0;
+  }
+  .lead b{font-size:1.35em;font-weight:700;white-space:nowrap}
+  .lead small{font-size:1.15em;color:#66666b;white-space:nowrap}
+  .lead-ok{
+    position:absolute;right:-.6em;top:-.6em;width:1.9em;height:1.9em;border-radius:50%;
+    background:#0a0a0a;border:.15em solid #fff;display:grid;place-items:center;transform:scale(0);
+  }
+  .lead-ok svg{width:1em;height:1em}
+  .log{position:absolute;left:2.2em;right:2em;top:19.3em;list-style:none}
+  .log li{font-size:1.3em;line-height:2.25;color:#dcdcdf;white-space:nowrap;opacity:0}
+  .log time{color:#77777c;font-variant-numeric:tabular-nums;margin-right:.9em}
+
+  .scene-sys.is-active .lead{animation:leadMove 7s both}
+  .scene-sys.is-active .lead-ok{animation:scPop .4s 5.1s cubic-bezier(.2,1.5,.4,1) both}
+  .scene-sys.is-active .pipe-col:nth-child(3){animation:colLit .5s 4.9s both}
+  .scene-sys.is-active .log li{animation:logIn .5s 1.1s both}
+  .scene-sys.is-active .log li:nth-child(2){animation-delay:3.1s}
+  .scene-sys.is-active .log li:nth-child(3){animation-delay:5.3s}
+
+  /* demo 3: one line sweeps across the frame and the timeline, turning raw footage into the final cut */
+  .vf{
+    position:absolute;left:2em;right:2em;top:2em;height:17em;border-radius:1.2em;overflow:hidden;
+    background:#111;box-shadow:0 0 0 1px rgba(255,255,255,.14);
+  }
+  .vf-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.1) saturate(1.3)}
+  .vf-raw,.vf-cut{position:absolute;inset:0}
+  /* the raw look is a filter laid over the one video, so the two halves can never drift out of sync */
+  .vf-raw{
+    background:rgba(150,150,150,.12);
+    -webkit-backdrop-filter:grayscale(1) contrast(.7) brightness(1.15);
+    backdrop-filter:grayscale(1) contrast(.7) brightness(1.15);
+  }
+  .vf-cut{clip-path:inset(0 100% 0 0)}
+  .vf-tag{
+    position:absolute;bottom:.9em;font-size:1.2em;font-weight:600;
+    padding:.3em .85em;border-radius:99em;background:rgba(0,0,0,.6);color:#fff;
+  }
+  .vf-raw .vf-tag{right:.9em}
+  .vf-cut .vf-tag{left:.9em}
+  .vf-c{position:absolute;width:1.5em;height:1.5em;border:0 solid rgba(255,255,255,.85)}
+  .vf-c.tl{left:.8em;top:.8em;border-width:.15em 0 0 .15em}
+  .vf-c.tr{right:.8em;top:.8em;border-width:.15em .15em 0 0}
+  .vf-c.bl{left:.8em;bottom:.8em;border-width:0 0 .15em .15em}
+  .vf-c.br{right:.8em;bottom:.8em;border-width:0 .15em .15em 0}
+  .vf-rec{
+    position:absolute;left:1.9em;top:1.25em;font-size:1.15em;font-weight:700;letter-spacing:.08em;
+    display:flex;align-items:center;gap:.5em;text-shadow:0 0 .5em rgba(0,0,0,.7);
+  }
+  .vf-rec::before{content:"";width:.7em;height:.7em;border-radius:50%;background:#ff3b30}
+  .tl{position:absolute;left:2em;right:2em;top:20.6em}
+  .tl-v{display:flex;gap:.4em;height:3.8em}
+  .tl-v i{
+    display:block;border-radius:.6em;
+    background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.12));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
+  }
+  .tl-a{display:flex;align-items:center;gap:.28em;height:3em;margin-top:.7em}
+  .tl-a i{flex:1;border-radius:1em;background:rgba(255,255,255,.55)}
+  .tl-dim{position:absolute;inset:-.3em 0;background:rgba(7,7,8,.72)}
+  .sweep{
+    position:absolute;left:2em;top:1.2em;height:27.7em;width:.16em;margin-left:-.08em;
+    background:#fff;border-radius:1em;box-shadow:0 0 1em rgba(255,255,255,.75);opacity:0;
+  }
+
+  .scene-film.is-active .tl-v i{animation:scUp .45s .25s both}
+  .scene-film.is-active .tl-v i:nth-child(2){animation-delay:.33s}
+  .scene-film.is-active .tl-v i:nth-child(3){animation-delay:.41s}
+  .scene-film.is-active .tl-v i:nth-child(4){animation-delay:.49s}
+  .scene-film.is-active .tl-v i:nth-child(5){animation-delay:.57s}
+  .scene-film.is-active .tl-a{animation:scFade .5s .7s both}
+  .scene-film.is-active .vf-cut{animation:vfWipe 3.6s 1.6s cubic-bezier(.45,0,.2,1) both}
+  .scene-film.is-active .vf-raw{animation:tlWipe 3.6s 1.6s cubic-bezier(.45,0,.2,1) both}
+  .scene-film.is-active .tl-dim{animation:tlWipe 3.6s 1.6s cubic-bezier(.45,0,.2,1) both}
+  .scene-film.is-active .sweep{animation:sweepMove 3.6s 1.6s cubic-bezier(.45,0,.2,1) both,scFade .3s 1.3s both,scOut .4s 5.3s forwards}
+  .scene-film.is-active .vf-rec::before{animation:recBlink 1.1s steps(1) infinite}
+
+  @keyframes scUp{from{opacity:0;transform:translateY(2em)}to{opacity:1;transform:none}}
+  @keyframes scFade{from{opacity:0}to{opacity:1}}
+  @keyframes scOut{from{opacity:1}to{opacity:0}}
+  @keyframes scWipe{from{clip-path:inset(-10% 100% -10% 0)}to{clip-path:inset(-10% -5% -10% 0)}}
+  @keyframes scPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+  @keyframes scPress{50%{transform:scale(.93)}}
+  @keyframes scRing{from{opacity:.5;transform:scale(1)}to{opacity:0;transform:scale(1.18,1.5)}}
+  @keyframes curMove{from{opacity:0;transform:translate(14em,7em)}20%{opacity:1}to{opacity:1;transform:none}}
+  @keyframes toastIn{from{opacity:0;transform:translateY(-1.4em) scale(.9)}to{opacity:1;transform:none}}
+  @keyframes leadMove{
+    0%{opacity:0;transform:translateY(-1.2em) scale(.9)}
+    6%{opacity:1;transform:none}
+    30%{opacity:1;transform:none;animation-timing-function:cubic-bezier(.5,0,.2,1)}
+    38%{opacity:1;transform:translateX(var(--step))}
+    62%{opacity:1;transform:translateX(var(--step));animation-timing-function:cubic-bezier(.5,0,.2,1)}
+    70%,100%{opacity:1;transform:translateX(calc(var(--step) * 2))}
+  }
+  @keyframes colLit{to{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07)}}
+  @keyframes logIn{from{opacity:0;transform:translateY(.6em)}to{opacity:1;transform:none}}
+  @keyframes vfWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes tlWipe{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
+  @keyframes sweepMove{from{transform:translateX(0)}to{transform:translateX(36em)}}
+  @keyframes recBlink{50%{opacity:.15}}
+
+  /* story-style segments: the active one fills while its demo plays, then the next takes over */
+  .build-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:14px 18px 0}
+  .build-tab{
+    position:relative;background:none;border:0;padding:14px 0 10px;
+    font:inherit;font-size:13px;font-weight:600;color:#8e8e93;text-align:left;
+    cursor:pointer;transition:color .3s;-webkit-tap-highlight-color:transparent;
+  }
+  .build-tab:hover,.build-tab.is-active{color:#fff}
+  .build-tab:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px}
+  .bt-bar{position:absolute;left:0;right:0;top:0;height:2px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden}
+  .bt-bar i{display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+  .build-tab.is-done .bt-bar i{transform:scaleX(1)}
+  .build-tab.is-active .bt-bar i{animation:btFill 7s linear forwards}
+  @keyframes btFill{to{transform:scaleX(1)}}
+  .build-panels{display:grid;padding:4px 18px 20px}
+  .build-panel{grid-area:1/1;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;pointer-events:none}
+  .build-panel.is-active{opacity:1;transform:none;pointer-events:auto}
+  .build-panel h3{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;letter-spacing:.2px;margin-bottom:5px}
+  .build-panel p{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+  .build.is-paused *,.build.is-paused *::before,.build.is-paused *::after{animation-play-state:paused !important}
+  @media(prefers-reduced-motion:reduce){
+    .scene *,.scene *::before,.scene *::after{animation-duration:.01s !important;animation-delay:0s !important;animation-iteration-count:1 !important}
+    .build-tab.is-active .bt-bar i{animation:none;transform:scaleX(1)}
+  }
+
+  /* ---------- PREVIOUS WORK: compact two-column grid ---------- */
+  .work{display:grid;grid-template-columns:1fr 1fr;gap:22px 14px}
+  .work-card{display:block;color:#fff;text-decoration:none;min-width:0}
+  .work-shot{
+    display:block;aspect-ratio:16/9;overflow:hidden;border-radius:14px;
+    border:1px solid var(--line);background:#0e0e10;
+    transition:border-color .3s,box-shadow .3s;
+  }
+  .work-shot img{
+    width:100%;height:100%;object-fit:cover;object-position:top;display:block;
+    transition:transform .6s cubic-bezier(.2,.7,.3,1);
+  }
+  .work-card:hover .work-shot{border-color:rgba(255,255,255,.32);box-shadow:0 14px 36px rgba(0,0,0,.5),0 0 30px rgba(255,255,255,.06)}
+  .work-card:hover .work-shot img{transform:scale(1.04)}
+  .work-card:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:14px}
+  .work-name{display:block;margin-top:11px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:.2px;line-height:1.25}
+  .work-cat{display:block;margin-top:3px;font-size:12.5px;color:var(--muted)}
+  .work-next .work-shot{
+    display:grid;place-items:center;border-style:dashed;border-color:rgba(255,255,255,.26);
+    background:none;color:var(--muted);font-size:13.5px;font-weight:500;transition:.3s;
+  }
+  .work-next:hover .work-shot{color:#fff;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.04)}
+  @media(max-width:400px){.work-name{font-size:14px}}
 
   /* ---------- LINK BUTTONS ---------- */
   .links{display:grid;gap:14px;margin-top:18px}
@@ -279,77 +534,319 @@
   .section:nth-of-type(3){animation-delay:.19s}
   .section:nth-of-type(4){animation-delay:.26s}
 
+  /* ---------- WHATSAPP FLOATING BUTTON ---------- */
+  .wa-float{
+    position:fixed;
+    right:22px;bottom:22px;
+    width:68px;height:68px;
+    border-radius:50%;
+    background:#25D366;
+    display:grid;place-items:center;
+    z-index:100;
+    box-shadow:0 6px 24px rgba(37,211,102,.45),0 0 0 1px rgba(255,255,255,.15);
+    transition:.25s;
+  }
+  .wa-float svg{width:38px;height:38px;fill:#fff}
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 8px 34px rgba(37,211,102,.7)}
+
   @media(max-width:480px){
+    .wa-float{right:16px;bottom:16px;width:64px;height:64px}
     .wrap{padding:48px 18px 60px}
     .name{font-size:28px}
     .avatar{width:110px;height:110px}
   }
+
+  /* ---------- MOBILE NAV (hamburger) ---------- */
+  /* the hero-cta-float (arrow + button) is hidden below 820px, so give phones
+     a small top-left menu that opens straight to the same "Work with me" CTA */
+  .nav-toggle{display:none}
+  .nav-burger{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    position:fixed;top:18px;left:18px;z-index:200;
+    width:46px;height:46px;border-radius:14px;
+    background:rgba(255,255,255,.07);
+    border:1px solid var(--line);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    cursor:pointer;
+  }
+  .nav-burger span{width:19px;height:2px;background:#fff;border-radius:2px;transition:.3s cubic-bezier(.2,.7,.3,1)}
+  .nav-toggle:checked ~ .nav-burger{background:rgba(255,255,255,.12)}
+  .nav-toggle:checked ~ .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle:checked ~ .nav-burger span:nth-child(2){opacity:0}
+  .nav-toggle:checked ~ .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-backdrop{
+    position:fixed;inset:0;z-index:150;
+    background:rgba(0,0,0,.55);
+    opacity:0;pointer-events:none;
+    transition:opacity .3s;
+  }
+  .nav-toggle:checked ~ .nav-backdrop{opacity:1;pointer-events:auto}
+  .nav-menu{
+    position:fixed;top:72px;left:18px;z-index:190;
+    min-width:200px;padding:14px;border-radius:18px;
+    background:rgba(12,12,13,.94);
+    border:1px solid var(--line);
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    opacity:0;transform:translateY(-8px) scale(.96);
+    pointer-events:none;
+    transition:opacity .28s cubic-bezier(.2,.7,.3,1),transform .28s cubic-bezier(.2,.7,.3,1);
+  }
+  .nav-toggle:checked ~ .nav-menu{opacity:1;transform:none;pointer-events:auto}
+  .nav-menu-cta{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    background:#fff;color:#000;text-decoration:none;white-space:nowrap;
+    font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:.2px;
+    padding:13px 20px;border-radius:999px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    transition:transform .25s cubic-bezier(.2,.7,.3,1);
+  }
+  .nav-menu-cta:hover{transform:translateY(-2px)}
+  @media(min-width:900px){
+    .nav-burger,.nav-menu,.nav-backdrop{display:none}
+  }
+  .nav-menu-link{display:block;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:11px 8px}
+  .nav-menu-cta{margin-top:8px}
+
+  /* ---------- TOP BAR (wide screens) ---------- */
+  .topbar{display:none}
+  #about,#services,#work,#contact{scroll-margin-top:92px}
+
+  /* ---------- WIDE LAYOUT: the page uses the full width from 900px up ---------- */
+  @media(min-width:900px){
+    .topbar{
+      display:block;position:fixed;top:0;left:0;right:0;z-index:120;
+      background:rgba(5,5,5,.72);border-bottom:1px solid var(--line);
+      -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    }
+    .topbar-in{max-width:1160px;margin:0 auto;padding:0 40px;height:64px;display:flex;align-items:center;gap:34px}
+    .topbar-name{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:.3px;color:#fff;text-decoration:none;margin-right:auto}
+    .topbar-links{display:flex;gap:30px}
+    .topbar-links a{color:#b4b4b9;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .topbar-links a:hover{color:#fff}
+    .topbar-cta{
+      background:#fff;color:#000;text-decoration:none;font-weight:700;font-size:13.5px;
+      padding:9px 18px;border-radius:999px;transition:box-shadow .25s;
+    }
+    .topbar-cta:hover{box-shadow:0 0 24px rgba(255,255,255,.4)}
+
+    .wrap{
+      max-width:1160px;padding:118px 40px 90px;
+      display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:56px;
+    }
+    .wrap>*{grid-column:1 / -1}
+    .wrap>.hero{grid-row:1}
+    .wrap>.about{grid-row:2}
+    .wrap>.sec-build{grid-row:3}
+    .wrap>.sec-work{grid-row:4}
+    .wrap>.sec-links{grid-row:5;grid-column:1}
+    .wrap>.sec-chips{grid-row:5;grid-column:2}
+    .wrap>.cta{grid-row:6}
+    .wrap>footer{grid-row:7}
+    .section{margin-top:92px}
+    .section-label{margin-bottom:24px}
+
+    /* hero: words on the left, photo on the right */
+    .hero{
+      display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:72px;align-items:center;
+      text-align:left;padding:34px 0 10px;
+    }
+    .hero>*{grid-column:1}
+    .hero>.avatar-row{grid-column:2;grid-row:1 / span 5;margin:0}
+    .avatar{width:300px;height:300px}
+    .name{font-size:clamp(48px,5.3vw,72px);line-height:1;margin-bottom:16px;white-space:nowrap}
+    .handle{font-size:15px;margin-bottom:24px}
+    .tag{font-size:21px;line-height:1.5;max-width:560px;margin:0}
+    .verse{justify-self:start;margin-top:26px}
+    .hero-actions{display:flex;gap:12px;margin-top:30px}
+
+    /* about: the two paragraphs sit side by side */
+    .about{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+    .about .section-label{grid-column:1 / -1}
+    .about p{font-size:17px;margin-bottom:0}
+
+    /* what I build: copy on the left, live demo on the right */
+    .build{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);grid-template-rows:1fr auto auto 1fr}
+    .build-stage{grid-column:2;grid-row:1 / -1;border-left:1px solid var(--line)}
+    .build-tabs{grid-column:1;grid-row:2;padding:0 44px;gap:6px}
+    .build-tab{font-size:14px;padding:16px 0 12px}
+    .build-panels{grid-column:1;grid-row:3;padding:14px 44px 0}
+    .build-panel h3{font-size:34px;line-height:1.12;margin-bottom:14px}
+    .build-panel p{font-size:17px;line-height:1.6;max-width:34ch}
+
+    .work{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 20px}
+    .links{grid-template-columns:1fr 1fr;margin-top:0}
+
+    .cta{margin-top:92px;padding:56px 32px}
+    .cta h2{font-size:32px;margin-bottom:12px}
+    .cta p{font-size:16px;margin-bottom:24px}
+  }
+  /* small laptops: give the copy side of the demo more room so the three labels stay on one line */
+  @media(min-width:900px) and (max-width:1100px){
+    .avatar{width:240px;height:240px}
+    .hero{column-gap:48px}
+    .build{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+    .build-tabs{padding:0 28px}
+    .build-tab{font-size:13px}
+    .build-panels{padding:14px 28px 0}
+    .build-panel h3{font-size:28px}
+    .build-panel p{font-size:16px}
+    .link{padding:15px 14px;gap:12px}
+    .link .arrow{display:none}
+  }
 </style>
 </head>
 <body>
+
+  <!-- MOBILE NAV: hamburger -> section links + "Work with me" (wide screens use the top bar instead) -->
+  <input type="checkbox" id="navToggle" class="nav-toggle" aria-hidden="true" />
+  <label for="navToggle" class="nav-burger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </label>
+  <nav class="nav-menu">
+    <a class="nav-menu-link" href="#about">About</a>
+    <a class="nav-menu-link" href="#services">Services</a>
+    <a class="nav-menu-link" href="#work">Work</a>
+    <a class="nav-menu-link" href="#contact">Contact</a>
+    <a class="nav-menu-cta" href="book.html">Work with me <span>→</span></a>
+  </nav>
+  <label for="navToggle" class="nav-backdrop" aria-hidden="true"></label>
+
+  <!-- TOP BAR: wide screens only; phones get the hamburger above -->
+  <div class="topbar">
+    <div class="topbar-in">
+      <a class="topbar-name" href="#">Jean-Pierre</a>
+      <nav class="topbar-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="topbar-cta" href="book.html">Work with me</a>
+    </div>
+  </div>
+
   <main class="wrap">
 
     <!-- HERO -->
     <header class="hero">
-      <div class="avatar">
-        <!-- Drop your photo in this folder as profile.jpg and it shows automatically.
-             If it's missing, the JP monogram is shown instead. -->
-        <img src="profile.jpg" alt="JP" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
-        <span class="initials" style="display:none">JP</span>
+      <div class="avatar-row">
+        <div class="avatar">
+          <!-- Drop your photo in this folder as profile.jpg and it shows automatically.
+               If it's missing, the JP monogram is shown instead. -->
+          <img src="profile.jpg" alt="JP" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
+          <span class="initials" style="display:none">JP</span>
+        </div>
       </div>
       <h1 class="name">Jean-Pierre</h1>
       <p class="handle">@jp_bookedtobuilt — Pretoria, Gauteng</p>
       <p class="tag">I build online presences that actually book jobs — not just pretty websites. Founder, builder, creative.</p>
       <span class="verse">Servant of <b>Jesus Christ</b> ✝</span>
+      <div class="hero-actions">
+        <a class="hero-cta" href="book.html">Work with me <span class="cta-arrow">→</span></a>
+        <a class="hero-ghost" href="#work">See my work</a>
+      </div>
     </header>
 
     <!-- ABOUT -->
-    <section class="section about">
+    <section class="section about" id="about">
       <div class="section-label">Who I Am</div>
-      <p>I run <strong>Booked to Built</strong>, helping businesses win online. I've been doing this for <strong>12+ months</strong> — and at this point I can build almost any website a business needs.</p>
+      <p>I run <strong>Booked to Built</strong>, helping businesses win online. I've been doing this for <strong data-since="2025-05-01">18+ months</strong> — and at this point I can build almost any website a business needs.</p>
       <p>We usually target <strong>home service businesses</strong>, but the work isn't limited to one niche. My vision is simple: <strong>scale companies up by giving them an online presence that converts.</strong></p>
     </section>
 
-    <!-- INTERESTS -->
-    <section class="section">
-      <div class="section-label">Off the Clock</div>
-      <div class="chips">
-        <span class="chip"><span class="ico">🏋️</span> Gym — daily</span>
-        <span class="chip"><span class="ico">✝️</span> Faith in Christ</span>
-        <span class="chip"><span class="ico">🧗</span> Bouldering / climbing</span>
-        <span class="chip"><span class="ico">📸</span> Photography</span>
-        <span class="chip"><span class="ico">🎬</span> Video editing & directing</span>
-      </div>
-    </section>
-
     <!-- WHAT I DO -->
-    <section class="section">
+    <section class="section sec-build" id="services">
       <div class="section-label">What I Build</div>
-      <div class="cards">
-        <div class="card">
-          <h3>Websites that convert</h3>
-          <p>Custom sites built to turn visitors into booked jobs — for almost any business.</p>
+      <div class="build" id="build">
+        <!-- the three demos are decorative; the real copy is in the panels below -->
+        <div class="build-stage" aria-hidden="true">
+
+          <div class="scene scene-web is-active">
+            <div class="bw">
+              <div class="bw-bar"><i></i><i></i><i></i><span class="bw-url">yourbusiness.co.za</span></div>
+              <div class="bw-page">
+                <div class="bw-nav"><span class="bw-logo"></span><span class="bw-links"><i></i><i></i><i></i></span></div>
+                <p class="bw-h"><span>Your business,</span><span>booked solid.</span></p>
+                <p class="bw-sub">Fast quotes. Real reviews. No missed calls.</p>
+                <div class="bw-row">
+                  <span class="bw-btn">
+                    <span class="bw-btn-a">Get a free quote</span>
+                    <span class="bw-btn-b">Quote requested ✓</span>
+                    <svg class="bw-cursor" viewBox="0 0 24 24"><path d="M4 2l15 9-6.6 1.5L9.6 19z" fill="#fff" stroke="#0a0a0a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span class="bw-stars">★★★★★<b>4.9</b></span>
+                </div>
+                <div class="bw-cards"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="toast">
+              <span class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+              <span><b>New booking</b><small>Thursday, 09:00</small></span>
+            </div>
+          </div>
+
+          <div class="scene scene-sys">
+            <div class="pipe">
+              <div class="pipe-col"><span class="pipe-h">New lead</span><i class="ghost"></i></div>
+              <div class="pipe-col"><span class="pipe-h">Contacted</span><i class="ghost"></i></div>
+              <div class="pipe-col"><span class="pipe-h">Booked</span><i class="ghost"></i></div>
+              <div class="lead">
+                <b>Sarah M.</b><small>Aircon repair</small>
+                <span class="lead-ok"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+              </div>
+            </div>
+            <ol class="log">
+              <li><time>09:02</time>Missed call. Text-back sent in 4s.</li>
+              <li><time>09:03</time>She replied. Quote sent automatically.</li>
+              <li><time>09:05</time>Booked for Thursday. Reminder set.</li>
+            </ol>
+          </div>
+
+          <div class="scene scene-film">
+            <!-- stock clip: "Nail Gun Construction Worker Framing House Building" by Everett Bumstead, Pexels (free licence) -->
+            <div class="vf">
+              <video class="vf-video" poster="creative.jpg" muted loop playsinline preload="metadata"><source src="creative.webm" type="video/webm" /><source src="creative.mp4" type="video/mp4" /></video>
+              <div class="vf-raw"><span class="vf-tag">Raw</span></div>
+              <div class="vf-cut"><span class="vf-tag">Final cut</span></div>
+              <i class="vf-c tl"></i><i class="vf-c tr"></i><i class="vf-c bl"></i><i class="vf-c br"></i>
+              <span class="vf-rec">REC</span>
+            </div>
+            <div class="tl">
+              <div class="tl-v"><i style="flex:22"></i><i style="flex:13"></i><i style="flex:30"></i><i style="flex:17"></i><i style="flex:18"></i></div>
+              <div class="tl-a" id="buildWave"></div>
+              <div class="tl-dim"></div>
+            </div>
+            <i class="sweep"></i>
+          </div>
+
         </div>
-        <div class="card">
-          <h3>Full online presence</h3>
-          <p>Branding, CRM, automations and the systems that keep leads coming in.</p>
+        <div class="build-tabs">
+          <button class="build-tab is-active" type="button" aria-pressed="true"><span class="bt-bar"><i></i></span>Websites</button>
+          <button class="build-tab" type="button" aria-pressed="false"><span class="bt-bar"><i></i></span>Online presence</button>
+          <button class="build-tab" type="button" aria-pressed="false"><span class="bt-bar"><i></i></span>Creative</button>
         </div>
-        <div class="card">
-          <h3>Creative work</h3>
-          <p>Photography, video editing and video directing — story that sells.</p>
+        <div class="build-panels">
+          <div class="build-panel is-active">
+            <h3>Websites that convert</h3>
+            <p>Custom sites built to turn visitors into booked jobs — for almost any business.</p>
+          </div>
+          <div class="build-panel">
+            <h3>Full online presence</h3>
+            <p>Branding, CRM, automations and the systems that keep leads coming in.</p>
+          </div>
+          <div class="build-panel">
+            <h3>Creative work</h3>
+            <p>Photography, video editing and video directing — story that sells.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- LINKS -->
-    <section class="section">
+    <section class="section sec-links" id="contact">
       <div class="section-label">Find Me</div>
       <div class="links">
-        <a class="link" href="https://bookedtobuilt.com" target="_blank" rel="noopener">
-          <span class="badge" style="background:#F5C400;box-shadow:0 0 18px rgba(245,196,0,.4);color:#000;font-family:'Syne',sans-serif;font-size:22px;font-weight:700;width:42px;height:42px;min-width:42px">b</span>
-          <span class="meta">Booked to Built<small>My agency — bookedtobuilt.com</small></span>
-          <span class="arrow">↗</span>
-        </a>
         <a class="link" href="https://www.instagram.com/jp_bookedtobuilt" target="_blank" rel="noopener">
           <span class="badge" style="background:radial-gradient(circle at 30% 110%,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);box-shadow:0 0 18px rgba(220,39,67,.5)">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -370,6 +867,84 @@
           <span class="meta">Facebook<small>JP van Eeden</small></span>
           <span class="arrow">↗</span>
         </a>
+        <a class="link" href="https://www.linkedin.com/in/jean-pierre-van-eeden-0a667726b/" target="_blank" rel="noopener">
+          <span class="badge" style="background:#0A66C2;box-shadow:0 0 18px rgba(10,102,194,.5)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </span>
+          <span class="meta">LinkedIn<small>Jean-Pierre van Eeden</small></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="link" href="mailto:jeanfromza@gmail.com">
+          <span class="badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="4.5" width="19" height="15" rx="3"/>
+              <path d="M3 7l9 6.5L21 7"/>
+            </svg>
+          </span>
+          <span class="meta">Email<small>jeanfromza@gmail.com</small></span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PREVIOUS WORK -->
+    <section class="section sec-work" id="work">
+      <div class="section-label">Previous Work</div>
+      <div class="work">
+        <a class="work-card" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-airmaster.jpg" alt="Air Master Air Conditioning website landing page" loading="lazy" /></span>
+          <span class="work-name">Air Master</span>
+          <span class="work-cat">Air conditioning</span>
+        </a>
+        <a class="work-card" href="https://rooftopwarriors.ca" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-rooftop.jpg" alt="Rooftop Warriors roofing website landing page" loading="lazy" /></span>
+          <span class="work-name">Rooftop Warriors</span>
+          <span class="work-cat">Roofing</span>
+        </a>
+        <a class="work-card" href="https://waterbergwasserypretoria.co.za" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-waterberg.jpg" alt="Waterberg Wassery cleaning services website landing page" loading="lazy" /></span>
+          <span class="work-name">Waterberg Wassery</span>
+          <span class="work-cat">Cleaning services</span>
+        </a>
+        <a class="work-card" href="https://www.theperfectfit.co.za/" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-perfectfit.jpg" alt="The Perfect Fit shopfitting website landing page" loading="lazy" /></span>
+          <span class="work-name">The Perfect Fit</span>
+          <span class="work-cat">Shopfitting</span>
+        </a>
+        <a class="work-card" href="https://sfpp.co.za/" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-sfpp.jpg" alt="SFPP Specialist Family Physicians in Private website landing page" loading="lazy" /></span>
+          <span class="work-name">SFPP</span>
+          <span class="work-cat">Healthcare network</span>
+        </a>
+        <a class="work-card" href="https://drjuliansmith.co.za/" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-drjulian.jpg" alt="Dr. Julian Smith paediatrician website landing page" loading="lazy" /></span>
+          <span class="work-name">Dr. Julian Smith</span>
+          <span class="work-cat">Paediatrics</span>
+        </a>
+        <a class="work-card" href="https://review.waterbergwasserypretoria.co.za" target="_blank" rel="noopener">
+          <span class="work-shot"><img src="work-review.jpg" alt="Waterberg Wassery review request page" loading="lazy" /></span>
+          <span class="work-name">Waterberg Reviews</span>
+          <span class="work-cat">Review funnel</span>
+        </a>
+        <a class="work-card work-next" href="book.html">
+          <span class="work-shot">Your site here</span>
+          <span class="work-name">Yours next</span>
+          <span class="work-cat">Work with me</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="section sec-chips">
+      <div class="section-label">Off the Clock</div>
+      <div class="chips">
+        <span class="chip"><span class="ico">🏋️</span> Gym — daily</span>
+        <span class="chip"><span class="ico">✝️</span> Faith in Christ</span>
+        <span class="chip"><span class="ico">🧗</span> Bouldering / climbing</span>
+        <span class="chip"><span class="ico">📸</span> Photography</span>
+        <span class="chip"><span class="ico">🎬</span> Video editing & directing</span>
       </div>
     </section>
 
@@ -377,7 +952,7 @@
     <div class="cta">
       <h2>Need a site that books jobs?</h2>
       <p>Home services, creative, or anything in between — let's build it.</p>
-      <a href="https://bookedtobuilt.com" target="_blank" rel="noopener">Work with me →</a>
+      <a href="book.html">Work with me →</a>
     </div>
 
     <footer>
@@ -385,5 +960,79 @@
     </footer>
 
   </main>
+
+  <!-- WhatsApp floating button (official WhatsApp glyph) -->
+  <a class="wa-float" href="https://wa.me/27718582994" target="_blank" rel="noopener" aria-label="Chat with me on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    /* "X+ months" counts up by itself: whole months since data-since (YYYY-MM-DD).
+       The static text in the HTML is the fallback if scripts are blocked. */
+    (function(){
+      var el=document.querySelector('[data-since]');
+      if(!el) return;
+      var p=el.getAttribute('data-since').split('-');
+      var start=new Date(+p[0],+p[1]-1,+p[2]);
+      var now=new Date();
+      var m=(now.getFullYear()-start.getFullYear())*12+(now.getMonth()-start.getMonth());
+      if(now.getDate()<start.getDate()) m--;
+      if(m>0) el.textContent=m+'+ months';
+    })();
+
+    /* "What I Build" stage: each demo plays once, its segment fills, then the next one starts.
+       Tapping a segment jumps to it. Everything pauses while the stage is off screen. */
+    (function(){
+      var root=document.getElementById('build');
+      if(!root) return;
+      var tabs=[].slice.call(root.querySelectorAll('.build-tab'));
+      var scenes=[].slice.call(root.querySelectorAll('.scene'));
+      var panels=[].slice.call(root.querySelectorAll('.build-panel'));
+      var wave=document.getElementById('buildWave');
+      if(wave){
+        var h=[30,55,80,45,95,60,35,70,100,65,40,85,50,30,75,90,55,35,60,95,70,45,80,50,30,65,100,75,40,55,85,60,35,90,70,45,25,60,80,50];
+        wave.innerHTML=h.map(function(v){return '<i style="height:'+v+'%"></i>'}).join('');
+      }
+      function show(i){
+        [tabs,scenes,panels].forEach(function(g){g.forEach(function(el){el.classList.remove('is-active')})});
+        void root.offsetWidth; /* restart the animations even when the same demo is picked again */
+        tabs.forEach(function(t,n){
+          t.classList.toggle('is-done',n<i);
+          t.classList.toggle('is-active',n===i);
+          t.setAttribute('aria-pressed',n===i?'true':'false');
+        });
+        scenes[i].classList.add('is-active');
+        panels[i].classList.add('is-active');
+        syncVideo();
+      }
+      var vid=root.querySelector('.vf-video');
+      function syncVideo(){
+        if(!vid) return;
+        var on=vid.closest('.scene').classList.contains('is-active')&&!root.classList.contains('is-paused');
+        if(on){ var p=vid.play(); if(p&&p.catch) p.catch(function(){}); } else vid.pause();
+      }
+      tabs.forEach(function(t,n){
+        t.addEventListener('click',function(){show(n)});
+        t.querySelector('.bt-bar i').addEventListener('animationend',function(){show((n+1)%tabs.length)});
+      });
+      if('IntersectionObserver' in window){
+        root.classList.add('is-paused');
+        new IntersectionObserver(function(e){
+          root.classList.toggle('is-paused',!e[0].isIntersecting);
+          syncVideo();
+        },{threshold:.3}).observe(root);
+      }
+    })();
+
+    /* phone menu: close it once a section link is tapped */
+    (function(){
+      var t=document.getElementById('navToggle');
+      [].forEach.call(document.querySelectorAll('.nav-menu a[href^="#"]'),function(a){
+        a.addEventListener('click',function(){ if(t) t.checked=false; });
+      });
+    })();
+  </script>
 </body>
 </html>
