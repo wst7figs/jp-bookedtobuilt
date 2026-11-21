@@ -392,26 +392,19 @@
   .sec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,7vw,34px);line-height:1.1;letter-spacing:-.005em;max-width:22ch}
   .sec-intro{font-size:15.5px;line-height:1.65;color:#bdbdc2;margin-top:12px;max-width:56ch}
 
-  /* ---------- BRAND WALL: real client logos, each tile opens the live site ---------- */
-  .brands{margin-top:48px}
-  .brands-kicker{font-size:14px;color:var(--muted);margin-bottom:10px}
-  .brands-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,6.4vw,30px);line-height:1.12;max-width:20ch}
-  .brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-  .brand{
-    --th:108px;position:relative;display:grid;place-items:center;height:var(--th);padding:14px;
-    border:1px solid var(--line);border-radius:16px;overflow:hidden;
-    background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.07),transparent 70%),#0d0d0f;
-    transition:border-color .3s,transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s;
+  /* ---------- CLIENT LOGOS: one slim row, matching grey at rest, full colour on hover ---------- */
+  .brands{margin-top:44px;padding-top:24px;border-top:1px solid var(--line)}
+  .brands-label{font-size:13.5px;color:var(--muted);margin-bottom:20px;text-align:center}
+  .brand-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px 30px}
+  .brand{display:block;line-height:0;border-radius:8px}
+  .brand img{
+    display:block;height:var(--hm,30px);width:auto;
+    filter:grayscale(1) brightness(1.5);opacity:.8;
+    transition:filter .35s,opacity .35s,transform .35s cubic-bezier(.2,.7,.3,1);
   }
-  .brand img{display:block;max-width:var(--mw,78%);max-height:calc(var(--th) * var(--mh,.64));width:auto;height:auto;object-fit:contain;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
-  .brand:hover{border-color:rgba(255,255,255,.32);transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 40px rgba(255,255,255,.06)}
-  .brand:hover img{transform:scale(1.05)}
-  .brand:focus-visible{outline:2px solid #fff;outline-offset:3px}
-  .brand-where{
-    position:absolute;left:12px;bottom:9px;font-size:11px;font-weight:600;color:#77777c;letter-spacing:.2px;
-    opacity:0;transform:translateY(4px);transition:.3s;
-  }
-  .brand:hover .brand-where,.brand:focus-visible .brand-where{opacity:1;transform:none}
+  .brand img.dim{opacity:.58}
+  .brand:hover img,.brand:focus-visible img{filter:none;opacity:1;transform:translateY(-2px)}
+  .brand:focus-visible{outline:2px solid #fff;outline-offset:6px}
 
   /* ---------- PROCESS ---------- */
   .steps{list-style:none;display:grid;gap:12px;margin-top:26px;counter-reset:step}
@@ -702,13 +695,10 @@
     .work{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 20px}
     .links{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0}
 
-    .brands{margin-top:96px}
-    .brands-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
-    .brands-title{font-size:40px;max-width:26ch}
-    .brands-kicker{font-size:15px;margin-bottom:14px}
-    .brand-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px}
-    .brand{--th:168px;padding:22px;border-radius:20px}
-    .brand-where{left:20px;bottom:14px;font-size:12px}
+    .brands{margin-top:72px;padding-top:30px;display:flex;align-items:center;gap:48px}
+    .brands-label{margin:0;flex:none;max-width:170px;text-align:left;line-height:1.5}
+    .brand-row{flex:1;flex-wrap:nowrap;justify-content:space-between;gap:28px}
+    .brand img{height:var(--h,40px)}
     .sec-title{font-size:42px}
     .sec-intro{font-size:17px}
     .steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:34px}
@@ -743,8 +733,8 @@
     .plan-price b{font-size:36px}
     .topbar-in{gap:22px;padding:0 28px}
     .topbar-links{gap:20px}
-    .brands-title{font-size:34px}
-    .brand{--th:144px}
+    .brands{gap:32px}
+    .brand img{height:calc(var(--h,40px) * .82)}
   }
 </style>
 </head>
@@ -803,39 +793,15 @@
       </div>
     </header>
 
-    <!-- BRANDS: real client logos (logos/web), each tile opens the live site -->
-    <section class="brands" aria-labelledby="brands-title">
-      <div class="brands-head">
-        <div>
-          <p class="brands-kicker">Brands I've built for</p>
-          <h2 class="brands-title" id="brands-title">Trusted by businesses in South Africa and Canada.</h2>
-        </div>
-      </div>
-      <div class="brand-grid">
-        <a class="brand" href="https://rooftopwarriors.ca" target="_blank" rel="noopener" style="--mw:80%;--mh:.62">
-          <img src="logos/web/rooftop.webp" alt="Rooftop Warriors Inc." loading="lazy" />
-          <span class="brand-where">Lethbridge, Canada</span>
-        </a>
-        <a class="brand" href="https://sfpp.co.za/" target="_blank" rel="noopener" style="--mw:70%;--mh:.74">
-          <img src="logos/web/sfpp.webp" alt="SFPP, Specialist Family Physicians in Private" loading="lazy" />
-          <span class="brand-where">South Africa</span>
-        </a>
-        <a class="brand" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener" style="--mw:88%;--mh:.60">
-          <img src="logos/web/airmaster.webp" alt="Air Master Airconditioning and Refrigeration" loading="lazy" />
-          <span class="brand-where">Pretoria</span>
-        </a>
-        <a class="brand" href="https://www.theperfectfit.co.za/" target="_blank" rel="noopener" style="--mw:80%;--mh:.56">
-          <img src="logos/web/perfectfit.webp" alt="The Perfect Fit" loading="lazy" />
-          <span class="brand-where">Gauteng</span>
-        </a>
-        <a class="brand" href="https://waterbergwasserypretoria.co.za" target="_blank" rel="noopener" style="--mw:60%;--mh:.76">
-          <img src="logos/web/waterberg.webp" alt="Waterberg Wassery" loading="lazy" />
-          <span class="brand-where">Pretoria</span>
-        </a>
-        <a class="brand" href="https://drjuliansmith.co.za/" target="_blank" rel="noopener" style="--mw:64%;--mh:.76">
-          <img src="logos/web/drjulian.webp" alt="Dr. Julian Smith, Paediatrician" loading="lazy" />
-          <span class="brand-where">Pretoria</span>
-        </a>
+    <!-- BRANDS: real client logos (logos/web), each opens the live site -->
+    <section class="brands" aria-label="Clients">
+      <p class="brands-label">Trusted by businesses in South Africa and Canada</p>
+      <div class="brand-row">
+        <a class="brand" href="https://rooftopwarriors.ca" target="_blank" rel="noopener"><img src="logos/web/rooftop.webp" alt="Rooftop Warriors Inc." style="--h:44px;--hm:30px" loading="lazy" /></a>
+        <a class="brand" href="https://sfpp.co.za/" target="_blank" rel="noopener"><img src="logos/web/sfpp.webp" alt="SFPP, Specialist Family Physicians in Private" style="--h:50px;--hm:38px" class="dim" loading="lazy" /></a>
+        <a class="brand" href="https://www.theperfectfit.co.za/" target="_blank" rel="noopener"><img src="logos/web/perfectfit.webp" alt="The Perfect Fit" style="--h:44px;--hm:31px" loading="lazy" /></a>
+        <a class="brand" href="https://waterbergwasserypretoria.co.za" target="_blank" rel="noopener"><img src="logos/web/waterberg.webp" alt="Waterberg Wassery" style="--h:56px;--hm:42px" loading="lazy" /></a>
+        <a class="brand" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener"><img src="logos/web/airmaster.webp" alt="Air Master Airconditioning and Refrigeration" style="--h:46px;--hm:31px" loading="lazy" /></a>
       </div>
     </section>
 
