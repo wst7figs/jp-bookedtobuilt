@@ -153,26 +153,6 @@
   }
   .about strong{color:#fff;font-weight:600}
 
-  /* ---------- INTEREST CHIPS ---------- */
-  .chips{display:flex;flex-wrap:wrap;gap:10px}
-  .chip{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:11px 15px;
-    font-size:14px;
-    font-weight:500;
-    transition:.25s;
-  }
-  .chip:hover{
-    background:var(--card-hover);
-    border-color:rgba(255,255,255,.25);
-    box-shadow:0 0 24px rgba(255,255,255,.10);
-    transform:translateY(-2px);
-  }
-  .chip .ico{font-size:16px;filter:grayscale(1) brightness(2)}
-
   /* ---------- WHAT I BUILD: one stage, three live demos ---------- */
   .build{
     border:1px solid var(--line);border-radius:22px;overflow:hidden;
@@ -619,8 +599,7 @@
     .wrap>.about{grid-row:2}
     .wrap>.sec-build{grid-row:3}
     .wrap>.sec-work{grid-row:4}
-    .wrap>.sec-links{grid-row:5;grid-column:1}
-    .wrap>.sec-chips{grid-row:5;grid-column:2}
+    .wrap>.sec-links{grid-row:5}
     .wrap>.cta{grid-row:6}
     .wrap>footer{grid-row:7}
     .section{margin-top:92px}
@@ -649,7 +628,7 @@
     .build-panel p{font-size:17px;line-height:1.6;max-width:34ch}
 
     .work{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 20px}
-    .links{grid-template-columns:1fr 1fr;margin-top:0}
+    .links{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0}
 
     .cta{margin-top:92px;padding:56px 32px}
     .cta h2{font-size:32px;margin-bottom:12px}
@@ -669,6 +648,7 @@
     .build-panel p{font-size:16px}
     .link{padding:15px 14px;gap:12px}
     .link .arrow{display:none}
+    .links{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
@@ -911,18 +891,6 @@
           <span class="work-name">Yours next</span>
           <span class="work-cat">Work with me</span>
         </a>
-      </div>
-    </section>
-
-    <!-- INTERESTS -->
-    <section class="section sec-chips">
-      <div class="section-label">Off the Clock</div>
-      <div class="chips">
-        <span class="chip"><span class="ico">🏋️</span> Gym — daily</span>
-        <span class="chip"><span class="ico">✝️</span> Faith in Christ</span>
-        <span class="chip"><span class="ico">🧗</span> Bouldering / climbing</span>
-        <span class="chip"><span class="ico">📸</span> Photography</span>
-        <span class="chip"><span class="ico">🎬</span> Video editing & directing</span>
       </div>
     </section>
 
