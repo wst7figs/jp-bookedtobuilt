@@ -81,33 +81,19 @@
   .jfix{font-family:'Inter',system-ui,sans-serif;font-weight:800}
 
   /* the visual is drawn in % of its own box, so it scales as one piece at every width */
-  .hero-visual{position:relative;width:100%;max-width:460px;aspect-ratio:46/43}
+  .hero-visual{position:relative;width:100%;max-width:300px;margin-top:28px}
   .portrait{
-    position:absolute;right:0;top:0;width:64%;aspect-ratio:4/5;margin:0;
+    position:relative;width:100%;aspect-ratio:4/5;margin:0;
     border-radius:24px;overflow:hidden;background:#111;
     box-shadow:0 0 0 1px rgba(255,255,255,.16),0 30px 70px rgba(0,0,0,.6),0 0 70px rgba(255,255,255,.08);
   }
   .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
   .portrait::after{content:"";position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(transparent,rgba(0,0,0,.88))}
-  .portrait figcaption{position:absolute;left:14px;right:18px;bottom:16px;z-index:1;text-align:right}
-  .portrait figcaption b{display:block;font-family:'Syne',sans-serif;font-size:19px;font-weight:800}
-  .portrait figcaption span{font-size:12.5px;color:#cfcfd4}
-  .hshot{
-    position:absolute;display:block;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#111;
-    box-shadow:0 0 0 1px rgba(255,255,255,.18),0 22px 50px rgba(0,0,0,.7);
-    transition:transform .45s cubic-bezier(.2,.7,.3,1);
-  }
-  .hshot i{display:block;height:7%;min-height:14px;background:#161618;position:relative}
-  .hshot i::before{
-    content:"";position:absolute;left:8px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;
-    background:rgba(255,255,255,.28);box-shadow:8px 0 rgba(255,255,255,.28),16px 0 rgba(255,255,255,.28);
-  }
-  .hshot img{width:100%;height:93%;object-fit:cover;object-position:top;display:block}
-  .hs1{left:0;top:23%;width:54%;transform:rotate(-5deg);z-index:2}
-  .hs2{left:5%;top:57%;width:50%;transform:rotate(3deg);z-index:3}
-  .hshot:hover{transform:rotate(0) scale(1.04);z-index:4}
+  .portrait figcaption{position:absolute;left:20px;right:20px;bottom:18px;z-index:1}
+  .portrait figcaption b{display:block;font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
+  .portrait figcaption span{font-size:13px;color:#cfcfd4}
   .hero-count{
-    position:absolute;right:4%;bottom:0;z-index:4;
+    position:absolute;right:16px;top:16px;z-index:2;
     background:#fff;color:#000;text-decoration:none;font-weight:700;font-size:13px;
     padding:8px 14px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);
   }
@@ -577,10 +563,6 @@
   @media(max-width:480px){
     .wa-float{right:16px;bottom:16px;width:64px;height:64px}
     .wrap{padding:48px 18px 60px}
-    .hs1{width:47%}
-    .hs2{width:44%}
-    .portrait figcaption b{font-size:16px}
-    .portrait figcaption span{font-size:11.5px}
     .hero-cta{font-size:14px;padding:13px 16px}
     .hero-ghost{font-size:14px;padding:13px 16px}
     .hero-actions{gap:10px}
@@ -681,8 +663,8 @@
     .section-label{margin-bottom:24px}
 
     /* hero: copy on the left, portrait + work on the right */
-    .hero{grid-template-columns:minmax(0,1fr) minmax(0,460px);column-gap:64px;align-items:center;padding:30px 0 0}
-    .hero-visual{order:0;justify-self:end}
+    .hero{grid-template-columns:minmax(0,1fr) minmax(0,390px);column-gap:64px;align-items:center;padding:30px 0 0}
+    .hero-visual{order:0;justify-self:end;max-width:390px;margin-top:0}
     .kicker{font-size:16px;margin-bottom:18px}
     .headline{font-size:clamp(38px,3.9vw,52px)}
     .tag{font-size:19px;margin-top:22px}
@@ -728,9 +710,7 @@
   /* small laptops: give the copy side of the demo more room so the three labels stay on one line */
   @media(min-width:900px) and (max-width:1100px){
     .hero{grid-template-columns:minmax(0,1fr) minmax(0,380px);column-gap:40px}
-    .hs1{width:47%}
-    .hs2{width:44%}
-    .portrait figcaption b{font-size:16px}
+    .hero-visual{max-width:330px}
     .build{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
     .build-tabs{padding:0 28px}
     .build-tab{font-size:13px}
@@ -803,8 +783,6 @@
           <img src="profile.jpg" alt="Jean-Pierre" />
           <figcaption><b>Jean-Pierre</b><span>Founder · Pretoria</span></figcaption>
         </figure>
-        <a class="hshot hs1" href="https://rooftopwarriors.ca" target="_blank" rel="noopener" aria-label="Rooftop Warriors website"><i></i><img src="work-rooftop.jpg" alt="" /></a>
-        <a class="hshot hs2" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener" aria-label="Air Master website"><i></i><img src="work-airmaster.jpg" alt="" /></a>
         <a class="hero-count" href="#work">7 sites live</a>
       </div>
     </header>
