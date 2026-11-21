@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JP — Booked to Built</title>
-<meta name="description" content="JP — founder of Booked to Built. I build online presences that book jobs. Web, creative, photography & video." />
+<title>JP Marketing &amp; Websites</title>
+<meta name="description" content="JP Marketing &amp; Websites — Jean-Pierre builds online presences that book jobs. Web, creative, photography & video." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -67,78 +67,57 @@
     padding:64px 22px 80px;
   }
 
-  /* ---------- HERO ---------- */
-  .hero{text-align:center;animation:rise .8s ease both}
-  .avatar-row{margin-bottom:22px}
-  .avatar{
-    width:128px;height:128px;
-    margin:0 auto;
-    border-radius:50%;
-    position:relative;
-    display:grid;place-items:center;
-    background:
-      linear-gradient(145deg,#1a1a1c,#050505);
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,.18),
-      0 0 30px rgba(255,255,255,.25),
-      0 0 80px rgba(255,255,255,.12);
-    overflow:hidden;
-    animation:pulseGlow 4s ease-in-out infinite;
+  /* ---------- HERO: copy + portrait card with client sites fanned over it ---------- */
+  .hero{display:grid;gap:34px;animation:rise .8s ease both}
+  .hero-visual{order:-1}
+  .kicker{font-size:15px;color:#cfcfd4;margin-bottom:14px}
+  .kicker b{color:#fff;font-weight:600}
+  .headline{
+    font-family:'Syne',sans-serif;font-weight:800;
+    font-size:clamp(30px,8.2vw,44px);line-height:1.04;letter-spacing:-.01em;
   }
-  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-  .avatar .initials{
-    font-family:'Syne',sans-serif;
-    font-weight:800;
-    font-size:42px;
-    letter-spacing:1px;
-    color:#fff;
-    text-shadow:0 0 18px rgba(255,255,255,.6);
-  }
-  .name{
-    font-family:'Syne',sans-serif;
-    font-weight:800;
-    font-size:34px;
-    letter-spacing:.5px;
-    margin-bottom:6px;
-  }
-  .name .glow{text-shadow:0 0 22px var(--glow)}
-  .fullname{
-    font-size:17px;
-    font-weight:500;
-    color:#e8e8ea;
-    letter-spacing:.5px;
-    margin-bottom:4px;
-  }
-  .handle{
-    color:var(--muted);
-    font-size:14px;
-    font-weight:500;
-    letter-spacing:.3px;
-    margin-bottom:18px;
-  }
-  .tag{
-    font-size:16px;
-    line-height:1.6;
-    color:#dcdcdf;
-    max-width:430px;
-    margin:0 auto 8px;
-    font-weight:400;
-  }
+  .tag{font-size:16.5px;line-height:1.6;color:#d6d6da;margin:18px 0 0;max-width:520px}
   .verse{
-    display:inline-block;
-    margin-top:14px;
-    font-size:12.5px;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    color:var(--muted);
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:7px 16px;
+    display:inline-block;margin-top:24px;
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;
   }
   .verse b{color:#fff;text-shadow:0 0 14px var(--glow)}
 
+  /* the visual is drawn in % of its own box, so it scales as one piece at every width */
+  .hero-visual{position:relative;width:100%;max-width:460px;aspect-ratio:46/43}
+  .portrait{
+    position:absolute;right:0;top:0;width:64%;aspect-ratio:4/5;margin:0;
+    border-radius:24px;overflow:hidden;background:#111;
+    box-shadow:0 0 0 1px rgba(255,255,255,.16),0 30px 70px rgba(0,0,0,.6),0 0 70px rgba(255,255,255,.08);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+  .portrait::after{content:"";position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(transparent,rgba(0,0,0,.88))}
+  .portrait figcaption{position:absolute;left:14px;right:18px;bottom:16px;z-index:1;text-align:right}
+  .portrait figcaption b{display:block;font-family:'Syne',sans-serif;font-size:19px;font-weight:800}
+  .portrait figcaption span{font-size:12.5px;color:#cfcfd4}
+  .hshot{
+    position:absolute;display:block;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#111;
+    box-shadow:0 0 0 1px rgba(255,255,255,.18),0 22px 50px rgba(0,0,0,.7);
+    transition:transform .45s cubic-bezier(.2,.7,.3,1);
+  }
+  .hshot i{display:block;height:7%;min-height:14px;background:#161618;position:relative}
+  .hshot i::before{
+    content:"";position:absolute;left:8px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;
+    background:rgba(255,255,255,.28);box-shadow:8px 0 rgba(255,255,255,.28),16px 0 rgba(255,255,255,.28);
+  }
+  .hshot img{width:100%;height:93%;object-fit:cover;object-position:top;display:block}
+  .hs1{left:0;top:23%;width:54%;transform:rotate(-5deg);z-index:2}
+  .hs2{left:5%;top:57%;width:50%;transform:rotate(3deg);z-index:3}
+  .hshot:hover{transform:rotate(0) scale(1.04);z-index:4}
+  .hero-count{
+    position:absolute;right:4%;bottom:0;z-index:4;
+    background:#fff;color:#000;text-decoration:none;font-weight:700;font-size:13px;
+    padding:8px 14px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);
+  }
+
   /* ---------- HERO ACTIONS (wide screens only; phones use the menu button) ---------- */
-  .hero-actions{display:none}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .hero-cta{
     display:inline-flex;align-items:center;gap:9px;
     background:#fff;color:#000;text-decoration:none;white-space:nowrap;
@@ -552,8 +531,13 @@
   @media(max-width:480px){
     .wa-float{right:16px;bottom:16px;width:64px;height:64px}
     .wrap{padding:48px 18px 60px}
-    .name{font-size:28px}
-    .avatar{width:110px;height:110px}
+    .hs1{width:47%}
+    .hs2{width:44%}
+    .portrait figcaption b{font-size:16px}
+    .portrait figcaption span{font-size:11.5px}
+    .hero-cta{font-size:14px;padding:13px 16px}
+    .hero-ghost{font-size:14px;padding:13px 16px}
+    .hero-actions{gap:10px}
   }
 
   /* ---------- MOBILE NAV (hamburger) ---------- */
@@ -646,19 +630,14 @@
     .section{margin-top:92px}
     .section-label{margin-bottom:24px}
 
-    /* hero: words on the left, photo on the right */
-    .hero{
-      display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:72px;align-items:center;
-      text-align:left;padding:34px 0 10px;
-    }
-    .hero>*{grid-column:1}
-    .hero>.avatar-row{grid-column:2;grid-row:1 / span 5;margin:0}
-    .avatar{width:300px;height:300px}
-    .name{font-size:clamp(48px,5.3vw,72px);line-height:1;margin-bottom:16px;white-space:nowrap}
-    .handle{font-size:15px;margin-bottom:24px}
-    .tag{font-size:21px;line-height:1.5;max-width:560px;margin:0}
-    .verse{justify-self:start;margin-top:26px}
-    .hero-actions{display:flex;gap:12px;margin-top:30px}
+    /* hero: copy on the left, portrait + work on the right */
+    .hero{grid-template-columns:minmax(0,1fr) minmax(0,460px);column-gap:64px;align-items:center;padding:30px 0 0}
+    .hero-visual{order:0;justify-self:end}
+    .kicker{font-size:16px;margin-bottom:18px}
+    .headline{font-size:clamp(38px,3.9vw,52px)}
+    .tag{font-size:19px;margin-top:22px}
+    .hero-actions{margin-top:30px}
+    .verse{margin-top:28px}
 
     /* about: the two paragraphs sit side by side */
     .about{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
@@ -683,8 +662,10 @@
   }
   /* small laptops: give the copy side of the demo more room so the three labels stay on one line */
   @media(min-width:900px) and (max-width:1100px){
-    .avatar{width:240px;height:240px}
-    .hero{column-gap:48px}
+    .hero{grid-template-columns:minmax(0,1fr) minmax(0,380px);column-gap:40px}
+    .hs1{width:47%}
+    .hs2{width:44%}
+    .portrait figcaption b{font-size:16px}
     .build{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
     .build-tabs{padding:0 28px}
     .build-tab{font-size:13px}
@@ -715,7 +696,7 @@
   <!-- TOP BAR: wide screens only; phones get the hamburger above -->
   <div class="topbar">
     <div class="topbar-in">
-      <a class="topbar-name" href="#">Jean-Pierre</a>
+      <a class="topbar-name" href="#">JP Marketing &amp; Websites</a>
       <nav class="topbar-links" aria-label="Sections">
         <a href="#about">About</a>
         <a href="#services">Services</a>
@@ -730,28 +711,31 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="avatar-row">
-        <div class="avatar">
-          <!-- Drop your photo in this folder as profile.jpg and it shows automatically.
-               If it's missing, the JP monogram is shown instead. -->
-          <img src="profile.jpg" alt="JP" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
-          <span class="initials" style="display:none">JP</span>
+      <div class="hero-copy">
+        <p class="kicker">Hi, I'm <b>Jean-Pierre</b> from JP Marketing &amp; Websites.</p>
+        <h1 class="headline">Websites that book jobs, not just look pretty.</h1>
+        <p class="tag">Founder, builder, creative. I build the site, the systems and the content that keep your calendar full.</p>
+        <div class="hero-actions">
+          <a class="hero-cta" href="book.html">Work with me <span class="cta-arrow">→</span></a>
+          <a class="hero-ghost" href="#work">See my work</a>
         </div>
+        <span class="verse">Servant of <b>Jesus Christ</b> ✝</span>
       </div>
-      <h1 class="name">Jean-Pierre</h1>
-      <p class="handle">@jp_bookedtobuilt — Pretoria, Gauteng</p>
-      <p class="tag">I build online presences that actually book jobs — not just pretty websites. Founder, builder, creative.</p>
-      <span class="verse">Servant of <b>Jesus Christ</b> ✝</span>
-      <div class="hero-actions">
-        <a class="hero-cta" href="book.html">Work with me <span class="cta-arrow">→</span></a>
-        <a class="hero-ghost" href="#work">See my work</a>
+      <div class="hero-visual">
+        <figure class="portrait">
+          <img src="profile.jpg" alt="Jean-Pierre" />
+          <figcaption><b>Jean-Pierre</b><span>Founder · Pretoria</span></figcaption>
+        </figure>
+        <a class="hshot hs1" href="https://rooftopwarriors.ca" target="_blank" rel="noopener" aria-label="Rooftop Warriors website"><i></i><img src="work-rooftop.jpg" alt="" /></a>
+        <a class="hshot hs2" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener" aria-label="Air Master website"><i></i><img src="work-airmaster.jpg" alt="" /></a>
+        <a class="hero-count" href="#work">7 sites live</a>
       </div>
     </header>
 
     <!-- ABOUT -->
     <section class="section about" id="about">
       <div class="section-label">Who I Am</div>
-      <p>I run <strong>Booked to Built</strong>, helping businesses win online. I've been doing this for <strong data-since="2025-05-01">18+ months</strong> — and at this point I can build almost any website a business needs.</p>
+      <p>I run <strong>JP Marketing &amp; Websites</strong>, helping businesses win online. I've been doing this for <strong data-since="2025-05-01">18+ months</strong> — and at this point I can build almost any website a business needs.</p>
       <p>We usually target <strong>home service businesses</strong>, but the work isn't limited to one niche. My vision is simple: <strong>scale companies up by giving them an online presence that converts.</strong></p>
     </section>
 
@@ -956,7 +940,7 @@
     </div>
 
     <footer>
-      JP <span class="dot">•</span> Booked to Built <span class="dot">•</span> Pretoria, Gauteng
+      JP Marketing &amp; Websites <span class="dot">•</span> Pretoria, Gauteng
     </footer>
 
   </main>
