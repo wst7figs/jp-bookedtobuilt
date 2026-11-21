@@ -1,3 +1,5 @@
 .playwright-mcp
 hero-variants.html
 server.js
+logos/*
+!logos/web

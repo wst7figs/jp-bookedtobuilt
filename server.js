@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const root = __dirname;
-const types = { '.html':'text/html', '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png', '.css':'text/css', '.js':'text/javascript', '.mp4':'video/mp4', '.webm':'video/webm', '.svg':'image/svg+xml' };
+const types = { '.html':'text/html', '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png', '.css':'text/css', '.js':'text/javascript', '.mp4':'video/mp4', '.webm':'video/webm', '.webp':'image/webp', '.svg':'image/svg+xml' };
 http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p === '/') p = '/index.html';
