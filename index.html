@@ -399,11 +399,9 @@
   .brand{display:block;line-height:0;border-radius:8px}
   .brand img{
     display:block;height:var(--hm,30px);width:auto;
-    filter:grayscale(1) brightness(1.5);opacity:.8;
-    transition:filter .35s,opacity .35s,transform .35s cubic-bezier(.2,.7,.3,1);
+    transition:transform .35s cubic-bezier(.2,.7,.3,1);
   }
-  .brand img.dim{opacity:.58}
-  .brand:hover img,.brand:focus-visible img{filter:none;opacity:1;transform:translateY(-2px)}
+  .brand:hover img,.brand:focus-visible img{transform:translateY(-2px)}
   .brand:focus-visible{outline:2px solid #fff;outline-offset:6px}
 
   /* ---------- PROCESS ---------- */
@@ -798,9 +796,9 @@
       <p class="brands-label">Trusted by businesses in South Africa and Canada</p>
       <div class="brand-row">
         <a class="brand" href="https://rooftopwarriors.ca" target="_blank" rel="noopener"><img src="logos/web/rooftop.webp" alt="Rooftop Warriors Inc." style="--h:44px;--hm:30px" loading="lazy" /></a>
-        <a class="brand" href="https://sfpp.co.za/" target="_blank" rel="noopener"><img src="logos/web/sfpp.webp" alt="SFPP, Specialist Family Physicians in Private" style="--h:50px;--hm:38px" class="dim" loading="lazy" /></a>
+        <a class="brand" href="https://sfpp.co.za/" target="_blank" rel="noopener"><img src="logos/web/sfpp.webp" alt="SFPP, Specialist Family Physicians in Private" style="--h:50px;--hm:38px" loading="lazy" /></a>
         <a class="brand" href="https://www.theperfectfit.co.za/" target="_blank" rel="noopener"><img src="logos/web/perfectfit.webp" alt="The Perfect Fit" style="--h:44px;--hm:31px" loading="lazy" /></a>
-        <a class="brand" href="https://waterbergwasserypretoria.co.za" target="_blank" rel="noopener"><img src="logos/web/waterberg.webp" alt="Waterberg Wassery" style="--h:56px;--hm:42px" loading="lazy" /></a>
+        <a class="brand" href="https://waterbergwasserypretoria.co.za" target="_blank" rel="noopener"><img src="logos/web/waterberg.webp" alt="Waterberg Wassery" style="--h:60px;--hm:44px" loading="lazy" /></a>
         <a class="brand" href="https://airmasterairconditioning.co.za" target="_blank" rel="noopener"><img src="logos/web/airmaster.webp" alt="Air Master Airconditioning and Refrigeration" style="--h:46px;--hm:31px" loading="lazy" /></a>
       </div>
     </section>
